@@ -1,0 +1,26 @@
+{
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parser": "babel-eslint",
+  "plugins": [
+    "react",
+    "react-native"
+  ],
+  "globals": {
+    "clearInterval": true,
+    "clearTimeout": true,
+    "console": false,
+    "fetch": true,
+    "navigator": false,
+    "setTimeout": true,
+    "setInterval": true,
+    "require": true,
+  },
+  "rules": {
+    "no-console": 1,
+    "no-unused-vars": 1,
+    "react-native/no-unused-styles": 1,
+    "react-native/split-platform-components": 1,
+    "react-native/no-inline-styles": 1,
+    "react-native/no-color-literals": 0,
+  }
+}
