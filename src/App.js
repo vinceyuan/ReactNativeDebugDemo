@@ -2,45 +2,107 @@
 
 import React, { Component } from 'react';
 import {
+  Navigator,
+  Platform,
   StyleSheet,
-  Text,
   View
 } from 'react-native';
+import NavigationBarStyles from './NavigationBarStyles';
+
+import type {
+  NavigationState,
+} from 'NavigationTypeDefinition';
+
+import Home from './Home';
+import type Route from './Route';
+
+const TITLE_BAR_HEIGHT = Platform.OS === 'ios' ? 80 : 56; // On iOS, it includes status bar. On Android, it doesn't.
 
 export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+      <Navigator
+        initialRoute={{ title: 'Awesome Scene', component: Home}}
+        renderScene={this._renderScene.bind(this)}
+        navigationBar={
+          <Navigator.NavigationBar
+            navigationStyles={NavigationBarStyles}
+            style={[styles.navigatorBar]}
+            routeMapper={this._routeMapper()}
+          />
+        }
+      />
     );
+  }
+
+  _navigatorItem(functionName, route, navigator, index, navState) {
+    let classDefinition = route.component;
+
+    if(classDefinition && classDefinition[functionName]) {
+        return classDefinition[functionName](route, navigator, index, navState);
+    } else {
+        return null;
+    }
+  }
+
+  _renderScene(route, navigator) {
+    var Component = route.component;
+
+    navigator.parent = this;
+
+    return (
+      <Component navigator={navigator} route={route} {...route.props}/>
+    );
+  }
+
+  _routeMapper() {
+    return {
+      LeftButton: (route: Route, navigator: typeof Navigator, index: number, navState: NavigationState) => {
+        return (
+          <View style={[styles.itemLayout, styles.leftButton]}>
+            {this._navigatorItem('leftButton', route, navigator, index, navState)}
+          </View>
+        );
+      },
+      RightButton: (route: Route, navigator: typeof Navigator, index: number, navState: NavigationState) => {
+        return (
+          <View style={[styles.itemLayout, styles.rightButton]}>
+            {this._navigatorItem('rightButton', route, navigator, index, navState)}
+          </View>
+        );
+      },
+      Title: (route: Route, navigator: typeof Navigator, index: number, navState: NavigationState) => {
+        return (
+          <View style={[styles.itemLayout]}>
+            {this._navigatorItem('title', route, navigator, index, navState)}
+          </View>
+        );
+      }
+    }
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  navigatorBar:{
+    height: TITLE_BAR_HEIGHT,
+    backgroundColor: 'white',
+    elevation: 3,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowRadius: 2,
+    shadowOpacity: 0.8,
+    shadowColor: 'gray',
+  },
+  itemLayout: {
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flex: 1,
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  leftButton: {
+    marginLeft: 16,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  rightButton: {
+    marginRight: 16,
   },
 });
