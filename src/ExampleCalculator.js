@@ -5,6 +5,7 @@ import {
   Navigator,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View
 } from 'react-native';
@@ -16,8 +17,18 @@ type Props = {
   route: Route,
 }
 
-export default class ExampleCalculator extends Component <void, Props, void> {
-  props:Props;
+type State = {
+  value1: number,
+  value2: number,
+}
+
+export default class ExampleCalculator extends Component <void, Props, State> {
+  props: Props;
+
+  state: State = {
+    value1: 0,
+    value2: 0,
+  };
 
   static leftButton(route: Route, navigator: typeof Navigator){
     return (
@@ -35,10 +46,50 @@ export default class ExampleCalculator extends Component <void, Props, void> {
     );
   }
 
+  _calculate(value1: number, value2: number): number {
+    return value1 + value2;
+  }
+
+  _onChangeTextValue1(text: string) {
+    let value = parseFloat(text);
+    if (isNaN(value)) {
+      value = 0;
+    }
+    this.setState({value1: value});
+  }
+
+  _onChangeTextValue2(text: string) {
+    let value = parseFloat(text);
+    if (isNaN(value)) {
+      value = 0;
+    }
+    this.setState({value2: value});
+  }
+
   render() {
+    let value1 = this.state.value1;
+    let value2 = this.state.value1;
+    let result = this._calculate(value1, value2);
     return (
       <View style={styles.container}>
-        <Text>Hello {this.props.route.title}!</Text>
+        <View style={styles.inputRow}>
+          <TextInput style={[styles.textInput, styles.text]}
+            multiline={false}
+            keyboardType='numeric'
+            value={this.state.value1.toString()}
+            onChangeText={this._onChangeTextValue1.bind(this)}
+          />
+          <Text style={styles.text}>+</Text>
+          <TextInput style={[styles.textInput, styles.text]}
+            multiline={false}
+            keyboardType='numeric'
+            value={this.state.value2.toString()}
+            onChangeText={this._onChangeTextValue2.bind(this)}
+          />
+        </View>
+        <View style={styles.horizontal}>
+          <Text style={styles.text}>= {result}</Text>
+        </View>
       </View>
     );
   }
@@ -50,8 +101,19 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    paddingTop: 80,
   },
+  inputRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textInput: {
+    width: 100,
+  },
+  text: {
+    fontSize: 40,
+  }
 });

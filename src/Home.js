@@ -19,7 +19,7 @@ type Props = {
 }
 
 export default class Home extends Component <void, Props, void> {
-  props:Props;
+  props: Props;
 
   static title(route: Route){
     return (
