@@ -70,6 +70,9 @@ export default class ExampleCalculator extends Component <void, Props, State> {
     let value1 = this.state.value1;
     let value2 = this.state.value1;
     let result = this._calculate(value1, value2);
+    // console.log('value1', value1);
+    // console.log('value2', value2);
+    // console.log('result', result);
     return (
       <View style={styles.container}>
         <View style={styles.inputRow}>
