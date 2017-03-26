@@ -1,4 +1,4 @@
-//
+// @flow
 
 import React, { Component } from 'react';
 import {
@@ -11,7 +11,7 @@ import {
 
 import type Route from './Route';
 
-import SecondView from './SecondView';
+import ExampleCalculator from './ExampleCalculator';
 
 type Props = {
   navigator: typeof Navigator,
@@ -21,20 +21,20 @@ type Props = {
 export default class Home extends Component <void, Props, void> {
   props:Props;
 
-  static title(){
+  static title(route: Route){
     return (
-      <Text>Hello</Text>
+      <Text style={styles.title}>{route.title}</Text>
     );
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Hello {this.props.route.title}!</Text>
         <TouchableOpacity
-          onPress={() => this.props.navigator.push({ title: 'Second Scene', component: SecondView})}
+          onPress={() => this.props.navigator.push({ title: 'Calculator', component: ExampleCalculator})}
+          style={styles.button}
         >
-          <Text>Show second scene</Text>
+          <Text style={styles.buttonText}>Example 1</Text>
         </TouchableOpacity>
       </View>
     );
@@ -42,10 +42,25 @@ export default class Home extends Component <void, Props, void> {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 28,
+  },
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    paddingTop: 80,
   },
+  button: {
+    backgroundColor: 'lightgray',
+    borderRadius: 6,
+    width: 300,
+    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10,
+  },
+  buttonText: {
+    fontSize: 40,
+  }
 });

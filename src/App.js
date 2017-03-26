@@ -22,7 +22,7 @@ export default class App extends Component {
   render() {
     return (
       <Navigator
-        initialRoute={{ title: 'Awesome Scene', component: Home}}
+        initialRoute={{ title: 'Debugging Demo', component: Home}}
         renderScene={this._renderScene.bind(this)}
         navigationBar={
           <Navigator.NavigationBar

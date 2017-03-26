@@ -1,4 +1,4 @@
-//
+// @flow
 
 import React, { Component } from 'react';
 import {
@@ -16,7 +16,7 @@ type Props = {
   route: Route,
 }
 
-export default class SecondView extends Component <void, Props, void> {
+export default class ExampleCalculator extends Component <void, Props, void> {
   props:Props;
 
   static leftButton(route: Route, navigator: typeof Navigator){
@@ -29,9 +29,9 @@ export default class SecondView extends Component <void, Props, void> {
     )
   }
 
-  static title(){
+  static title(route: Route){
     return (
-      <Text>Second View</Text>
+      <Text style={styles.title}>{route.title}</Text>
     );
   }
 
@@ -45,6 +45,9 @@ export default class SecondView extends Component <void, Props, void> {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 28,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
