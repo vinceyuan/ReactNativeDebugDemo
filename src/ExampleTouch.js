@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import {
   Navigator,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -44,6 +45,12 @@ export default class ExampleTouch extends Component <void, Props, State> {
   render() {
     return (
       <View style={styles.container}>
+        <ScrollView horizontal={true}>
+          <View style={[styles.square, styles.color1]} />
+          <View style={[styles.square, styles.color2]} />
+          <View style={[styles.square, styles.color3]} />
+          <View style={[styles.square, styles.color4]} />
+        </ScrollView>
       </View>
     );
   }
@@ -59,4 +66,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
     paddingTop: 80,
   },
+  square: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
+    margin: 10,
+  },
+  color1: {
+    backgroundColor: 'lightgray',
+  },
+  color2: {
+    backgroundColor: 'gray',
+  },
+  color3: {
+    backgroundColor: 'blue',
+  },
+  color4: {
+    backgroundColor: 'pink',
+  },
+
 });
