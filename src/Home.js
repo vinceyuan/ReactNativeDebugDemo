@@ -12,6 +12,7 @@ import {
 import type Route from './Route';
 
 import ExampleCalculator from './ExampleCalculator';
+import ExampleTouch from './ExampleTouch';
 
 type Props = {
   navigator: typeof Navigator,
@@ -35,6 +36,12 @@ export default class Home extends Component <void, Props, void> {
           style={styles.button}
         >
           <Text style={styles.buttonText}>Example 1</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigator.push({ title: 'Touch', component: ExampleTouch})}
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>Example 2</Text>
         </TouchableOpacity>
       </View>
     );
