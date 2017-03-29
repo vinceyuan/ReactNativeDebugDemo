@@ -103,6 +103,7 @@ export default class ExampleTouch extends Component <void, Props, State> {
           ref={'panel'}
           {...this._panResponder.panHandlers}
         >
+          <View style={styles.bar} />
           <ScrollView horizontal={true}>
             <View style={[styles.square, styles.color1]} />
             <View style={[styles.square, styles.color2]} />
@@ -150,8 +151,16 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     backgroundColor: 'darkgray',
-    paddingTop: 20,
     bottom: 0,
     alignItems: 'center',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  bar: {
+    height: 6,
+    width: 40,
+    borderRadius: 3,
+    backgroundColor: 'gray',
+    margin: 5,
   },
 });
