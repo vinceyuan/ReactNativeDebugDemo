@@ -3,15 +3,18 @@
 import React, { Component } from 'react';
 import {
   Navigator,
+  PanResponder,
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View
 } from 'react-native';
 
 import type Route from './Route';
+
+const DEFAULT_HEIGHT = 300;
+
 
 type Props = {
   navigator: typeof Navigator,
@@ -26,6 +29,10 @@ export default class ExampleTouch extends Component <void, Props, State> {
 
   state: State = {
   };
+
+  _height = DEFAULT_HEIGHT;
+  _panResponder = {}
+
   static leftButton(route: Route, navigator: typeof Navigator){
     return (
       <TouchableOpacity style={styles.menu} onPress={() => {
@@ -42,6 +49,47 @@ export default class ExampleTouch extends Component <void, Props, State> {
     );
   }
 
+  componentWillMount() {
+    this._panResponder = PanResponder.create({
+      onStartShouldSetPanResponder: () => {
+        return true;
+        // Do not allow this view to become responder on the start of a touch,
+        // because we want the scroll view to handle touch first.
+        //return false;
+      },
+      onMoveShouldSetPanResponder: (event, gestureState) => {
+        // Called for every touch move on the View when it is not the responder.
+        // When there is obvious touch movement vertically, clain touch responsiveness.
+        return true;
+        // const {dx, dy, vx, vy} = gestureState;
+        // return Math.abs(dy) - Math.abs(dx) > 10 || Math.abs(vy) > Math.abs(vx) + 0.3;
+      },
+      onPanResponderMove: (event, gestureState) => {
+        // Touch moves.
+        this._updatePanelViewNativeStyle(gestureState.dy);
+      },
+      onPanResponderRelease: (event, gestureState) => {
+        // The user has released all touches while this view is the
+        // responder. This typically means a gesture has succeeded
+        const {dy} = gestureState;
+        this._height -= dy;
+      },
+      onPanResponderTerminate: () => {
+        // Another component has become the responder, so this gesture
+        // should be cancelled.
+        // But panel may have been moved. Need to move it back.
+        //LayoutAnimation.easeInEaseOut();
+        this._updatePanelViewNativeStyle(0);
+      },
+    });
+  }
+
+  _updatePanelViewNativeStyle(dy: number) {
+    this.refs.panel.setNativeProps({
+      style: {height: this._height - dy},
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -51,6 +99,17 @@ export default class ExampleTouch extends Component <void, Props, State> {
           <View style={[styles.square, styles.color3]} />
           <View style={[styles.square, styles.color4]} />
         </ScrollView>
+        <View key={"Panel"}  style={styles.panel}
+          ref={'panel'}
+          {...this._panResponder.panHandlers}
+        >
+          <ScrollView horizontal={true}>
+            <View style={[styles.square, styles.color1]} />
+            <View style={[styles.square, styles.color2]} />
+            <View style={[styles.square, styles.color3]} />
+            <View style={[styles.square, styles.color4]} />
+          </ScrollView>
+        </View>
       </View>
     );
   }
@@ -85,4 +144,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'pink',
   },
 
+  panel: {
+    position: 'absolute',
+    height: DEFAULT_HEIGHT,
+    left: 0,
+    right: 0,
+    backgroundColor: 'darkgray',
+    paddingTop: 20,
+    bottom: 0,
+    alignItems: 'center',
+  },
 });
