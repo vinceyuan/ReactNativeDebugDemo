@@ -13,6 +13,7 @@ import type Route from './Route';
 
 import ExampleCalculator from './ExampleCalculator';
 import ExampleTouch from './ExampleTouch';
+import ExampleComplexView from './ExampleComplexView';
 
 type Props = {
   navigator: typeof Navigator,
@@ -42,6 +43,12 @@ export default class Home extends Component <void, Props, void> {
           style={styles.button}
         >
           <Text style={styles.buttonText}>Example 2</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigator.push({ title: '', component: ExampleComplexView})}
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>Example 3</Text>
         </TouchableOpacity>
       </View>
     );

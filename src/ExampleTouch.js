@@ -35,7 +35,7 @@ export default class ExampleTouch extends Component <void, Props, State> {
 
   static leftButton(route: Route, navigator: typeof Navigator){
     return (
-      <TouchableOpacity style={styles.menu} onPress={() => {
+      <TouchableOpacity style={styles.leftButton} onPress={() => {
         navigator.pop();
       }}>
         <Text>Back</Text>
@@ -123,6 +123,9 @@ export default class ExampleTouch extends Component <void, Props, State> {
 }
 
 const styles = StyleSheet.create({
+  leftButton: {
+    padding: 10,
+  },
   title: {
     fontSize: 28,
   },
