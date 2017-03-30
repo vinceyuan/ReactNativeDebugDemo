@@ -20,7 +20,7 @@ type Props = {
 type State = {
 }
 
-export default class ExampleComplexView extends Component <void, Props, State> {
+export default class ExampleStatistics extends Component <void, Props, State> {
   props: Props;
 
   state: State = {

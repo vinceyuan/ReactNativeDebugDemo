@@ -14,7 +14,7 @@ import type Route from './Route';
 
 import ExampleCalculator from './ExampleCalculator';
 import ExampleTouch from './ExampleTouch';
-import ExampleComplexView from './ExampleComplexView';
+import ExampleStatistics from './ExampleStatistics';
 
 type Props = {
   navigator: typeof Navigator,
@@ -65,7 +65,7 @@ export default class Home extends Component <void, Props, State> {
           visible={this.state.modalVisible}
           onRequestClose={() => this.setState({modalVisible: false})}
         >
-          <ExampleComplexView
+          <ExampleStatistics
             onPressExit={() => this.setState({modalVisible: false})}
           />
         </Modal>
