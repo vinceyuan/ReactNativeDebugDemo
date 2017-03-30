@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import {
+  Modal,
   Navigator,
   StyleSheet,
   Text,
@@ -20,8 +21,16 @@ type Props = {
   route: Route,
 }
 
-export default class Home extends Component <void, Props, void> {
+type State = {
+  modalVisible: boolean,
+}
+
+export default class Home extends Component <void, Props, State> {
   props: Props;
+
+  state: State = {
+    modalVisible: false,
+  };
 
   static title(route: Route){
     return (
@@ -45,11 +54,21 @@ export default class Home extends Component <void, Props, void> {
           <Text style={styles.buttonText}>Example 2</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => this.props.navigator.push({ title: '', component: ExampleComplexView})}
+          onPress={() => this.setState({modalVisible: true})}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Example 3</Text>
         </TouchableOpacity>
+        <Modal
+          animationType={"slide"}
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => this.setState({modalVisible: false})}
+        >
+          <ExampleComplexView
+            onPressExit={() => this.setState({modalVisible: false})}
+          />
+        </Modal>
       </View>
     );
   }
