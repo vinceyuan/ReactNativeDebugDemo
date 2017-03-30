@@ -50,14 +50,17 @@ export default class ExampleTouch extends Component <void, Props, State> {
   }
 
   componentWillMount() {
+    console.log('componentWillMount');
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => {
+        console.log('onStartShouldSetPanResponder');
         return true;
         // Do not allow this view to become responder on the start of a touch,
         // because we want the scroll view to handle touch first.
         //return false;
       },
       onMoveShouldSetPanResponder: (event, gestureState) => {
+        console.log('onMoveShouldSetPanResponder', gestureState.dx, gestureState.dy);
         // Called for every touch move on the View when it is not the responder.
         // When there is obvious touch movement vertically, clain touch responsiveness.
         return true;
@@ -65,16 +68,19 @@ export default class ExampleTouch extends Component <void, Props, State> {
         // return Math.abs(dy) - Math.abs(dx) > 10 || Math.abs(vy) > Math.abs(vx) + 0.3;
       },
       onPanResponderMove: (event, gestureState) => {
+        console.log('onPanResponderMove', gestureState.dx, gestureState.dy);
         // Touch moves.
         this._updatePanelViewNativeStyle(gestureState.dy);
       },
       onPanResponderRelease: (event, gestureState) => {
+        console.log('onPanResponderRelease', gestureState.dx, gestureState.dy);
         // The user has released all touches while this view is the
         // responder. This typically means a gesture has succeeded
         const {dy} = gestureState;
         this._height -= dy;
       },
       onPanResponderTerminate: () => {
+        console.log('onPanResponderTerminate');
         // Another component has become the responder, so this gesture
         // should be cancelled.
         // But panel may have been moved. Need to move it back.
