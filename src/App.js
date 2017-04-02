@@ -5,6 +5,7 @@ import {
   Navigator,
   Platform,
   StyleSheet,
+  UIManager,
   View
 } from 'react-native';
 import NavigationBarStyles from './NavigationBarStyles';
@@ -17,6 +18,11 @@ import Home from './Home';
 import type Route from './Route';
 
 const TITLE_BAR_HEIGHT = Platform.OS === 'ios' ? 80 : 56; // On iOS, it includes status bar. On Android, it doesn't.
+
+/**
+ * Enabled Android Layout Animation
+ */
+UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
 
 export default class App extends Component {
   render() {

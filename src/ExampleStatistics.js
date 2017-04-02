@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import {
-  Navigator,
+  LayoutAnimation,
   Platform,
   ScrollView,
   StyleSheet,
@@ -11,37 +11,38 @@ import {
   View
 } from 'react-native';
 
-import type Route from './Route';
-
 type Props = {
   onPressExit: Function,
 }
 
 type State = {
+  aoPeople: number,
+  aoLikes: number,
+  aoShares: number,
+  aoComments: number,
 }
 
 export default class ExampleStatistics extends Component <void, Props, State> {
   props: Props;
 
   state: State = {
+    aoPeople: 0.5,
+    aoLikes: 0.5,
+    aoShares: 0.5,
+    aoComments: 0.5,
   };
 
-  static leftButton(route: Route, navigator: typeof Navigator){
-    return (
-      <TouchableOpacity style={styles.leftButton} onPress={() => {
-        navigator.pop();
-      }}>
-        <Text>Back</Text>
-      </TouchableOpacity>
-    )
+  componentDidMount() {
+    setTimeout(() => {
+      LayoutAnimation.easeInEaseOut();
+      this.setState({
+        aoPeople: 3,
+        aoLikes: 9,
+        aoShares: 5,
+        aoComments: 7,
+      });
+    }, 500);
   }
-
-  static title(route: Route){
-    return (
-      <Text style={styles.title}>{route.title}</Text>
-    );
-  }
-
 
   render() {
     return (
@@ -74,6 +75,38 @@ export default class ExampleStatistics extends Component <void, Props, State> {
           <Text style={styles.audienceOverviewTitle}>AUDIENCE OVERVIEW</Text>
         </View>
         <View style={styles.audienceOverviewContent}>
+          <View style={[styles.aoItemRow, styles.horizontal]}>
+            <View style={styles.aoItemLeftCol}>
+              <Text style={styles.aoItemText}>People</Text>
+            </View>
+            <View style={[styles.aoItemRightCol, styles.horizontal]}>
+              <View style={[styles.aoItemValue, {flex: this.state.aoPeople}]}></View><View style={{flex: 10-this.state.aoPeople}}></View>
+            </View>
+          </View>
+          <View style={[styles.aoItemRow, styles.horizontal]}>
+            <View style={styles.aoItemLeftCol}>
+              <Text style={styles.aoItemText}>Likes</Text>
+            </View>
+            <View style={[styles.aoItemRightCol, styles.horizontal]}>
+              <View style={[styles.aoItemValue, {flex: this.state.aoLikes}]}></View><View style={{flex: 10-this.state.aoLikes}}></View>
+            </View>
+          </View>
+          <View style={[styles.aoItemRow, styles.horizontal]}>
+            <View style={styles.aoItemLeftCol}>
+              <Text style={styles.aoItemText}>Shares</Text>
+            </View>
+            <View style={[styles.aoItemRightCol, styles.horizontal]}>
+              <View style={[styles.aoItemValue, {flex: this.state.aoShares}]}></View><View style={{flex: 10-this.state.aoShares}}></View>
+            </View>
+          </View>
+          <View style={[styles.aoItemRow, styles.horizontal]}>
+            <View style={styles.aoItemLeftCol}>
+              <Text style={styles.aoItemText}>Comments</Text>
+            </View>
+            <View style={[styles.aoItemRightCol, styles.horizontal]}>
+              <View style={[styles.aoItemValue, {flex: this.state.aoComments}]}></View><View style={{flex: 10-this.state.aoComments}}></View>
+            </View>
+          </View>
         </View>
       </View>
     )
@@ -153,7 +186,29 @@ const styles = StyleSheet.create({
     color: '#7CD7DE',
   },
   audienceOverviewContent: {
-    height: 180,
+    height: 140,
     backgroundColor: '#0F3047',
+    padding: 12,
+  },
+  aoItemRow: {
+    height: 24,
+  },
+  aoItemLeftCol: {
+    width: 100,
+    justifyContent: 'center',
+  },
+  aoItemText: {
+    color: '#6A8DA4',
+  },
+  aoItemRightCol: {
+    flex: 1,
+    backgroundColor: '#143D56',
+    marginTop: 6,
+    marginBottom: 6,
+    borderRadius: 6,
+  },
+  aoItemValue: {
+    backgroundColor: '#5EBEC6',
+    borderRadius: 6,
   },
 });
