@@ -107,6 +107,19 @@ export default class ExampleStatistics extends Component <void, Props, State> {
               <View style={[styles.aoItemValue, {flex: this.state.aoComments}]}></View><View style={{flex: 10-this.state.aoComments}}></View>
             </View>
           </View>
+
+          <View style={[styles.aoItemMarkerRow, styles.horizontal]}>
+            <View style={styles.aoItemMarkerLeftCol}>
+            </View>
+            <View style={[styles.aoItemMarkerRightCol, styles.horizontal]}>
+              <Text style={[styles.aoItemMarkerCell, styles.aoItemMarkerCenter]}>0</Text>
+              <Text style={[styles.aoItemMarkerCell, styles.aoItemMarkerCenter]}>100</Text>
+              <Text style={[styles.aoItemMarkerCell, styles.aoItemMarkerCenter]}>200</Text>
+              <Text style={[styles.aoItemMarkerCell, styles.aoItemMarkerCenter]}>300</Text>
+              <Text style={[styles.aoItemMarkerCell, styles.aoItemMarkerCenter]}>400</Text>
+              <Text style={[styles.aoItemMarkerCell, styles.aoItemMarkerCenter]}>500</Text>
+            </View>
+          </View>
         </View>
       </View>
     )
@@ -186,12 +199,14 @@ const styles = StyleSheet.create({
     color: '#7CD7DE',
   },
   audienceOverviewContent: {
-    height: 140,
     backgroundColor: '#0F3047',
-    padding: 12,
+    paddingTop: 12,
+    paddingBottom: 10,
   },
   aoItemRow: {
     height: 24,
+    paddingLeft: 12,
+    paddingRight: 12,
   },
   aoItemLeftCol: {
     width: 100,
@@ -210,5 +225,21 @@ const styles = StyleSheet.create({
   aoItemValue: {
     backgroundColor: '#5EBEC6',
     borderRadius: 6,
+  },
+  aoItemMarkerRow: {
+
+  },
+  aoItemMarkerLeftCol: {
+    width: 90,
+  },
+  aoItemMarkerRightCol: {
+    flex: 1,
+  },
+  aoItemMarkerCell: {
+    flex: 1,
+    color: '#6A8DA4',
+  },
+  aoItemMarkerCenter: {
+    textAlign: 'center',
   },
 });
