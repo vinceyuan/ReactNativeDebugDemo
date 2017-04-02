@@ -63,6 +63,7 @@ export default class ExampleStatistics extends Component <void, Props, State> {
           </View>
 
           { this._audienceOverview() }
+          { this._visitors() }
         </ScrollView>
       </View>
     );
@@ -71,10 +72,10 @@ export default class ExampleStatistics extends Component <void, Props, State> {
   _audienceOverview() {
     return (
       <View style={[styles.cellView]}>
-        <View style={styles.audienceOverviewTitleView}>
-          <Text style={styles.audienceOverviewTitle}>AUDIENCE OVERVIEW</Text>
+        <View style={[styles.cellViewTitleView, styles.audienceOverviewTitleView]}>
+          <Text style={[styles.cellViewTitle, styles.audienceOverviewTitle]}>AUDIENCE OVERVIEW</Text>
         </View>
-        <View style={styles.audienceOverviewContent}>
+        <View style={styles.cellViewContent}>
           <View style={[styles.aoItemRow, styles.horizontal]}>
             <View style={styles.aoItemLeftCol}>
               <Text style={styles.aoItemText}>People</Text>
@@ -122,7 +123,39 @@ export default class ExampleStatistics extends Component <void, Props, State> {
           </View>
         </View>
       </View>
-    )
+    );
+  }
+
+  _visitors() {
+    return (
+      <View style={[styles.cellView]}>
+        <View style={[styles.cellViewTitleView, styles.visitorsTitleView]}>
+          <Text style={[styles.cellViewTitle, styles.visitorsTitle]}>VISITORS</Text>
+        </View>
+        <View style={styles.cellViewContent}>
+          <View style={[styles.visitorsBarRow, styles.horizontal]}>
+            <View style={[styles.newVisitorsBar, styles.newVisitorsColor, {flex: 3}]}></View>
+            <View style={[styles.returningVisitorsBar, styles.returningVisitorsColor, {flex: 7}]}></View>
+          </View>
+          <View style={[styles.visitorsInfoRow, styles.horizontal]}>
+            <View style={styles.visitorsInfoCol}>
+              <View style={styles.visitorsInfoNumberRow}><Text>21%</Text></View>
+              <View style={[styles.visitorsInfoTextRow, styles.horizontal]}>
+                <View style={[styles.visitorsInfoCircle, styles.newVisitorsColor]}></View>
+                <Text style={styles.visitorsInfoText}>New visitors</Text>
+              </View>
+            </View>
+            <View style={styles.visitorsInfoCol}>
+              <View style={styles.visitorsInfoNumberRow}><Text>79%</Text></View>
+              <View style={[styles.visitorsInfoTextRow, styles.horizontal]}>
+                <View style={[styles.visitorsInfoCircle, styles.returningVisitorsColor]}></View>
+                <Text style={styles.visitorsInfoText}>Returning visitors</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    );
   }
 }
 
@@ -177,6 +210,21 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15,
   },
+  cellViewTitleView: {
+    paddingTop: 6,
+    paddingBottom: 6,
+    paddingLeft: 12,
+    paddingRight: 12,
+  },
+  cellViewTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  cellViewContent: {
+    backgroundColor: '#0F3047',
+    paddingTop: 12,
+    paddingBottom: 10,
+  },
 
   dateView: {
     height: 30,
@@ -191,17 +239,9 @@ const styles = StyleSheet.create({
 
   audienceOverviewTitleView: {
     backgroundColor: '#27868F',
-    padding: 8,
   },
   audienceOverviewTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
     color: '#7CD7DE',
-  },
-  audienceOverviewContent: {
-    backgroundColor: '#0F3047',
-    paddingTop: 12,
-    paddingBottom: 10,
   },
   aoItemRow: {
     height: 24,
@@ -227,7 +267,6 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   aoItemMarkerRow: {
-
   },
   aoItemMarkerLeftCol: {
     width: 90,
@@ -241,5 +280,38 @@ const styles = StyleSheet.create({
   },
   aoItemMarkerCenter: {
     textAlign: 'center',
+  },
+
+  visitorsTitleView: {
+    backgroundColor: '#E3D756',
+  },
+  visitorsTitle: {
+    color: 'white',
+  },
+  visitorsBarRow: {
+    padding: 12,
+  },
+  newVisitorsBar: {
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+    height: 30,
+  },
+  returningVisitorsBar: {
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    height: 30,
+  },
+  newVisitorsColor: {
+    backgroundColor: '#F3F2C9',
+  },
+  returningVisitorsColor: {
+    backgroundColor: '#E3D756',
+  },
+  visitorsInfoRow: {
+    padding: 12,
+  },
+  visitorsInfoCol: {
+    flex: 1,
+    alignItems: 'center',
   },
 });
