@@ -20,6 +20,9 @@ type State = {
   aoLikes: number,
   aoShares: number,
   aoComments: number,
+
+  newVisitors: number,        // To control bar only
+  returningVisitors: number,  // To control bar only
 }
 
 export default class ExampleStatistics extends Component <void, Props, State> {
@@ -30,6 +33,9 @@ export default class ExampleStatistics extends Component <void, Props, State> {
     aoLikes: 0.5,
     aoShares: 0.5,
     aoComments: 0.5,
+
+    newVisitors: 50,
+    returningVisitors: 50,
   };
 
   componentDidMount() {
@@ -41,7 +47,15 @@ export default class ExampleStatistics extends Component <void, Props, State> {
         aoShares: 5,
         aoComments: 7,
       });
-    }, 500);
+
+      setTimeout(() => {
+        LayoutAnimation.easeInEaseOut();
+        this.setState({
+          newVisitors: 21,
+          returningVisitors: 79,
+        });
+      }, 300);
+    }, 300);
   }
 
   render() {
@@ -134,8 +148,8 @@ export default class ExampleStatistics extends Component <void, Props, State> {
         </View>
         <View style={styles.cellViewContent}>
           <View style={[styles.visitorsBarRow, styles.horizontal]}>
-            <View style={[styles.newVisitorsBar, styles.newVisitorsColor, {flex: 3}]}></View>
-            <View style={[styles.returningVisitorsBar, styles.returningVisitorsColor, {flex: 7}]}></View>
+            <View style={[styles.newVisitorsBar, styles.newVisitorsColor, {flex: this.state.newVisitors}]}></View>
+            <View style={[styles.returningVisitorsBar, styles.returningVisitorsColor, {flex: this.state.returningVisitors}]}></View>
           </View>
           <View style={[styles.visitorsInfoRow, styles.horizontal]}>
             <View style={styles.visitorsInfoCol}>
