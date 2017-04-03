@@ -23,6 +23,14 @@ type State = {
 
   newVisitors: number,        // To control bar only
   returningVisitors: number,  // To control bar only
+
+  sessionsSun: number,
+  sessionsMon: number,
+  sessionsTue: number,
+  sessionsWed: number,
+  sessionsThu: number,
+  sessionsFri: number,
+  sessionsSat: number,
 }
 
 export default class ExampleStatistics extends Component <void, Props, State> {
@@ -36,6 +44,14 @@ export default class ExampleStatistics extends Component <void, Props, State> {
 
     newVisitors: 50,
     returningVisitors: 50,
+
+    sessionsSun: 0,
+    sessionsMon: 0,
+    sessionsTue: 0,
+    sessionsWed: 0,
+    sessionsThu: 0,
+    sessionsFri: 0,
+    sessionsSat: 0,
   };
 
   componentDidMount() {
@@ -54,6 +70,19 @@ export default class ExampleStatistics extends Component <void, Props, State> {
           newVisitors: 21,
           returningVisitors: 79,
         });
+
+        setTimeout(() => {
+          LayoutAnimation.easeInEaseOut();
+          this.setState({
+            sessionsSun: 2,
+            sessionsMon: 3,
+            sessionsTue: 5,
+            sessionsWed: 4,
+            sessionsThu: 9,
+            sessionsFri: 6,
+            sessionsSat: 7,
+          });
+        }, 300);
       }, 300);
     }, 300);
   }
@@ -78,6 +107,7 @@ export default class ExampleStatistics extends Component <void, Props, State> {
 
           { this._audienceOverview() }
           { this._visitors() }
+          { this._sessions() }
         </ScrollView>
       </View>
     );
@@ -173,6 +203,73 @@ export default class ExampleStatistics extends Component <void, Props, State> {
       </View>
     );
   }
+
+  _sessions() {
+    return (
+      <View style={[styles.cellView]}>
+        <View style={[styles.cellViewTitleView, styles.sessionsTitleView]}>
+          <Text style={[styles.cellViewTitle, styles.visitorsTitle]}>SESSIONS</Text>
+        </View>
+        <View style={[styles.cellViewContent, styles.horizontal]}>
+          <View style={styles.sessionsBarCol}>
+            <View style={styles.sessionsYMarker100}><Text style={styles.seesionsYMarkerText}>100</Text></View>
+            <View style={styles.sessionsYMarker50}><Text style={styles.seesionsYMarkerText}>50</Text></View>
+            <View style={styles.sessionsYMarker0}><Text style={styles.seesionsYMarkerText}>0</Text></View>
+          </View>
+          <View style={styles.sessionsBarCol}>
+            <View style={styles.sessionsBarWrapper}>
+              <View style={{flex: 10 - this.state.sessionsSun}}></View>
+              <View style={[styles.sessionsBar, {flex: this.state.sessionsSun}]}></View>
+            </View>
+            <Text style={styles.sessionsBarText}>SUN</Text>
+          </View>
+          <View style={styles.sessionsBarCol}>
+            <View style={styles.sessionsBarWrapper}>
+              <View style={{flex: 10 - this.state.sessionsMon}}></View>
+              <View style={[styles.sessionsBar, {flex: this.state.sessionsMon}]}></View>
+            </View>
+            <Text style={styles.sessionsBarText}>MON</Text>
+          </View>
+          <View style={styles.sessionsBarCol}>
+            <View style={styles.sessionsBarWrapper}>
+              <View style={{flex: 10 - this.state.sessionsTue}}></View>
+              <View style={[styles.sessionsBar, {flex: this.state.sessionsTue}]}></View>
+            </View>
+            <Text style={styles.sessionsBarText}>TUE</Text>
+          </View>
+          <View style={styles.sessionsBarCol}>
+            <View style={styles.sessionsBarWrapper}>
+              <View style={{flex: 10 - this.state.sessionsWed}}></View>
+              <View style={[styles.sessionsBar, {flex: this.state.sessionsWed}]}></View>
+            </View>
+            <Text style={styles.sessionsBarText}>WED</Text>
+          </View>
+          <View style={styles.sessionsBarCol}>
+            <View style={styles.sessionsBarWrapper}>
+              <View style={{flex: 10 - this.state.sessionsThu}}></View>
+              <View style={[styles.sessionsBar, {flex: this.state.sessionsThu}]}></View>
+            </View>
+            <Text style={styles.sessionsBarText}>THU</Text>
+          </View>
+          <View style={styles.sessionsBarCol}>
+            <View style={styles.sessionsBarWrapper}>
+              <View style={{flex: 10 - this.state.sessionsFri}}></View>
+              <View style={[styles.sessionsBar, {flex: this.state.sessionsFri}]}></View>
+            </View>
+            <Text style={styles.sessionsBarText}>FRI</Text>
+          </View>
+          <View style={styles.sessionsBarCol}>
+            <View style={styles.sessionsBarWrapper}>
+              <View style={{flex: 10 - this.state.sessionsSat}}></View>
+              <View style={[styles.sessionsBar, {flex: this.state.sessionsSat}]}></View>
+            </View>
+            <Text style={styles.sessionsBarText}>Sat</Text>
+          </View>
+        </View>
+      </View>
+    );
+  }
+
 }
 
 const styles = StyleSheet.create({
@@ -340,5 +437,43 @@ const styles = StyleSheet.create({
   },
   visitorsInfoText: {
     color: '#6A8DA4',
+  },
+
+  sessionsTitleView: {
+    backgroundColor: '#EE4951',
+  },
+  sessionsBarCol: {
+    height: 120,
+    flex: 1,
+    marginLeft: 4,
+    marginRight: 4,
+  },
+  sessionsYMarker100: {
+    flex: 4,
+    alignItems: 'flex-end',
+  },
+  sessionsYMarker50: {
+    flex: 4,
+    alignItems: 'flex-end',
+  },
+  sessionsYMarker0: {
+    flex: 3.4,
+    alignItems: 'flex-end',
+  },
+  seesionsYMarkerText: {
+    color: '#6A8DA4',
+  },
+  sessionsBarWrapper: {
+    flex: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  sessionsBarText: {
+    flex: 2,
+    textAlign: 'center',
+    color: '#6A8DA4',
+  },
+  sessionsBar: {
+    backgroundColor: '#FF6D6C',
   },
 });
