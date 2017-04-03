@@ -139,14 +139,16 @@ export default class ExampleStatistics extends Component <void, Props, State> {
           </View>
           <View style={[styles.visitorsInfoRow, styles.horizontal]}>
             <View style={styles.visitorsInfoCol}>
-              <View style={styles.visitorsInfoNumberRow}><Text>21%</Text></View>
+              <View style={styles.visitorsInfoNumberRow}><Text style={styles.visitorsInfoNumber}>21%</Text></View>
               <View style={[styles.visitorsInfoTextRow, styles.horizontal]}>
                 <View style={[styles.visitorsInfoCircle, styles.newVisitorsColor]}></View>
                 <Text style={styles.visitorsInfoText}>New visitors</Text>
               </View>
             </View>
             <View style={styles.visitorsInfoCol}>
-              <View style={styles.visitorsInfoNumberRow}><Text>79%</Text></View>
+            </View>
+            <View style={styles.visitorsInfoCol}>
+              <View style={styles.visitorsInfoNumberRow}><Text style={styles.visitorsInfoNumber}>79%</Text></View>
               <View style={[styles.visitorsInfoTextRow, styles.horizontal]}>
                 <View style={[styles.visitorsInfoCircle, styles.returningVisitorsColor]}></View>
                 <Text style={styles.visitorsInfoText}>Returning visitors</Text>
@@ -289,7 +291,9 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   visitorsBarRow: {
-    padding: 12,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 5,
   },
   newVisitorsBar: {
     borderTopLeftRadius: 10,
@@ -307,11 +311,20 @@ const styles = StyleSheet.create({
   returningVisitorsColor: {
     backgroundColor: '#E3D756',
   },
+
   visitorsInfoRow: {
-    padding: 12,
+    paddingLeft: 5,
+    paddingRight: 5,
   },
   visitorsInfoCol: {
-    flex: 1,
+    flex: 3,
     alignItems: 'center',
+  },
+  visitorsInfoNumber: {
+    fontSize: 34,
+    color: 'white',
+  },
+  visitorsInfoText: {
+    color: '#6A8DA4',
   },
 });
