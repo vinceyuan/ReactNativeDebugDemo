@@ -11,6 +11,8 @@ import {
   View
 } from 'react-native';
 
+const LABEL_COLOR = "#6A8DA4";
+
 type Props = {
   onPressExit: Function,
 }
@@ -275,7 +277,7 @@ export default class ExampleStatistics extends Component <void, Props, State> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0A263A',
+    backgroundColor: '#02162A',
   },
   horizontal: {
     flexDirection: 'row',
@@ -366,11 +368,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   aoItemText: {
-    color: '#6A8DA4',
+    color: LABEL_COLOR,
   },
   aoItemRightCol: {
     flex: 1,
-    backgroundColor: '#143D56',
+    backgroundColor: '#205166',
     marginTop: 6,
     marginBottom: 6,
     borderRadius: 6,
@@ -389,7 +391,7 @@ const styles = StyleSheet.create({
   },
   aoItemMarkerCell: {
     flex: 1,
-    color: '#6A8DA4',
+    color: LABEL_COLOR,
   },
   aoItemMarkerCenter: {
     textAlign: 'center',
@@ -436,7 +438,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   visitorsInfoText: {
-    color: '#6A8DA4',
+    color: LABEL_COLOR,
   },
 
   sessionsTitleView: {
@@ -461,7 +463,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   seesionsYMarkerText: {
-    color: '#6A8DA4',
+    color: LABEL_COLOR,
   },
   sessionsBarWrapper: {
     flex: 10,
@@ -471,7 +473,7 @@ const styles = StyleSheet.create({
   sessionsBarText: {
     flex: 2,
     textAlign: 'center',
-    color: '#6A8DA4',
+    color: LABEL_COLOR,
   },
   sessionsBar: {
     backgroundColor: '#FF6D6C',
