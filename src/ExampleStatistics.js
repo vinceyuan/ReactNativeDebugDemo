@@ -212,60 +212,66 @@ export default class ExampleStatistics extends Component <void, Props, State> {
         <View style={[styles.cellViewTitleView, styles.sessionsTitleView]}>
           <Text style={[styles.cellViewTitle, styles.visitorsTitle]}>SESSIONS</Text>
         </View>
-        <View style={[styles.cellViewContent, styles.horizontal]}>
-          <View style={styles.sessionsBarCol}>
-            <View style={styles.sessionsYMarker100}><Text style={styles.seesionsYMarkerText}>100</Text></View>
-            <View style={styles.sessionsYMarker50}><Text style={styles.seesionsYMarkerText}>50</Text></View>
-            <View style={styles.sessionsYMarker0}><Text style={styles.seesionsYMarkerText}>0</Text></View>
+        <View>
+          <View style={styles.hiddenView}>
+            <Text style={styles.hiddenText}>💩</Text>
+            <View><View><View><Text> </Text></View></View></View>
           </View>
-          <View style={styles.sessionsBarCol}>
-            <View style={styles.sessionsBarWrapper}>
-              <View style={{flex: 10 - this.state.sessionsSun}}></View>
-              <View style={[styles.sessionsBar, {flex: this.state.sessionsSun}]}></View>
+          <View style={[styles.cellViewContent, styles.horizontal]}>
+            <View style={styles.sessionsBarCol}>
+              <View style={styles.sessionsYMarker100}><Text style={styles.seesionsYMarkerText}>100</Text></View>
+              <View style={styles.sessionsYMarker50}><Text style={styles.seesionsYMarkerText}>50</Text></View>
+              <View style={styles.sessionsYMarker0}><Text style={styles.seesionsYMarkerText}>0</Text></View>
             </View>
-            <Text style={styles.sessionsBarText}>SUN</Text>
-          </View>
-          <View style={styles.sessionsBarCol}>
-            <View style={styles.sessionsBarWrapper}>
-              <View style={{flex: 10 - this.state.sessionsMon}}></View>
-              <View style={[styles.sessionsBar, {flex: this.state.sessionsMon}]}></View>
+            <View style={styles.sessionsBarCol}>
+              <View style={styles.sessionsBarWrapper}>
+                <View style={{flex: 10 - this.state.sessionsSun}}></View>
+                <View style={[styles.sessionsBar, {flex: this.state.sessionsSun}]}></View>
+              </View>
+              <Text style={styles.sessionsBarText}>SUN</Text>
             </View>
-            <Text style={styles.sessionsBarText}>MON</Text>
-          </View>
-          <View style={styles.sessionsBarCol}>
-            <View style={styles.sessionsBarWrapper}>
-              <View style={{flex: 10 - this.state.sessionsTue}}></View>
-              <View style={[styles.sessionsBar, {flex: this.state.sessionsTue}]}></View>
+            <View style={styles.sessionsBarCol}>
+              <View style={styles.sessionsBarWrapper}>
+                <View style={{flex: 10 - this.state.sessionsMon}}></View>
+                <View style={[styles.sessionsBar, {flex: this.state.sessionsMon}]}></View>
+              </View>
+              <Text style={styles.sessionsBarText}>MON</Text>
             </View>
-            <Text style={styles.sessionsBarText}>TUE</Text>
-          </View>
-          <View style={styles.sessionsBarCol}>
-            <View style={styles.sessionsBarWrapper}>
-              <View style={{flex: 10 - this.state.sessionsWed}}></View>
-              <View style={[styles.sessionsBar, {flex: this.state.sessionsWed}]}></View>
+            <View style={styles.sessionsBarCol}>
+              <View style={styles.sessionsBarWrapper}>
+                <View style={{flex: 10 - this.state.sessionsTue}}></View>
+                <View style={[styles.sessionsBar, {flex: this.state.sessionsTue}]}></View>
+              </View>
+              <Text style={styles.sessionsBarText}>TUE</Text>
             </View>
-            <Text style={styles.sessionsBarText}>WED</Text>
-          </View>
-          <View style={styles.sessionsBarCol}>
-            <View style={styles.sessionsBarWrapper}>
-              <View style={{flex: 10 - this.state.sessionsThu}}></View>
-              <View style={[styles.sessionsBar, {flex: this.state.sessionsThu}]}></View>
+            <View style={styles.sessionsBarCol}>
+              <View style={styles.sessionsBarWrapper}>
+                <View style={{flex: 10 - this.state.sessionsWed}}></View>
+                <View style={[styles.sessionsBar, {flex: this.state.sessionsWed}]}></View>
+              </View>
+              <Text style={styles.sessionsBarText}>WED</Text>
             </View>
-            <Text style={styles.sessionsBarText}>THU</Text>
-          </View>
-          <View style={styles.sessionsBarCol}>
-            <View style={styles.sessionsBarWrapper}>
-              <View style={{flex: 10 - this.state.sessionsFri}}></View>
-              <View style={[styles.sessionsBar, {flex: this.state.sessionsFri}]}></View>
+            <View style={styles.sessionsBarCol}>
+              <View style={styles.sessionsBarWrapper}>
+                <View style={{flex: 10 - this.state.sessionsThu}}></View>
+                <View style={[styles.sessionsBar, {flex: this.state.sessionsThu}]}></View>
+              </View>
+              <Text style={styles.sessionsBarText}>THU</Text>
             </View>
-            <Text style={styles.sessionsBarText}>FRI</Text>
-          </View>
-          <View style={styles.sessionsBarCol}>
-            <View style={styles.sessionsBarWrapper}>
-              <View style={{flex: 10 - this.state.sessionsSat}}></View>
-              <View style={[styles.sessionsBar, {flex: this.state.sessionsSat}]}></View>
+            <View style={styles.sessionsBarCol}>
+              <View style={styles.sessionsBarWrapper}>
+                <View style={{flex: 10 - this.state.sessionsFri}}></View>
+                <View style={[styles.sessionsBar, {flex: this.state.sessionsFri}]}></View>
+              </View>
+              <Text style={styles.sessionsBarText}>FRI</Text>
             </View>
-            <Text style={styles.sessionsBarText}>SAT</Text>
+            <View style={styles.sessionsBarCol}>
+              <View style={styles.sessionsBarWrapper}>
+                <View style={{flex: 10 - this.state.sessionsSat}}></View>
+                <View style={[styles.sessionsBar, {flex: this.state.sessionsSat}]}></View>
+              </View>
+              <Text style={styles.sessionsBarText}>SAT</Text>
+            </View>
           </View>
         </View>
       </View>
@@ -443,6 +449,12 @@ const styles = StyleSheet.create({
 
   sessionsTitleView: {
     backgroundColor: '#EE4951',
+  },
+  hiddenView: {
+    position: 'absolute',
+  },
+  hiddenText: {
+    fontSize: 60,
   },
   sessionsBarCol: {
     height: 120,
