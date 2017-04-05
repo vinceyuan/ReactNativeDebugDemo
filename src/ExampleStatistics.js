@@ -45,13 +45,13 @@ export default class ExampleStatistics extends Component <void, Props, State> {
     newVisitors: 50,
     returningVisitors: 50,
 
-    sessionsSun: 0,
-    sessionsMon: 0,
-    sessionsTue: 0,
-    sessionsWed: 0,
-    sessionsThu: 0,
-    sessionsFri: 0,
-    sessionsSat: 0,
+    sessionsSun: 0.1,
+    sessionsMon: 0.1,
+    sessionsTue: 0.1,
+    sessionsWed: 0.1,
+    sessionsThu: 0.1,
+    sessionsFri: 0.1,
+    sessionsSat: 0.1,
   };
 
   componentDidMount() {
@@ -67,20 +67,20 @@ export default class ExampleStatistics extends Component <void, Props, State> {
       setTimeout(() => {
         LayoutAnimation.easeInEaseOut();
         this.setState({
-          newVisitors: 21,
-          returningVisitors: 79,
+          sessionsSun: 2,
+          sessionsMon: 3,
+          sessionsTue: 5,
+          sessionsWed: 4,
+          sessionsThu: 9,
+          sessionsFri: 6,
+          sessionsSat: 7,
         });
 
         setTimeout(() => {
           LayoutAnimation.easeInEaseOut();
           this.setState({
-            sessionsSun: 2,
-            sessionsMon: 3,
-            sessionsTue: 5,
-            sessionsWed: 4,
-            sessionsThu: 9,
-            sessionsFri: 6,
-            sessionsSat: 7,
+            newVisitors: 21,
+            returningVisitors: 79,
           });
         }, 300);
       }, 300);
@@ -106,8 +106,8 @@ export default class ExampleStatistics extends Component <void, Props, State> {
           </View>
 
           { this._audienceOverview() }
-          { this._visitors() }
           { this._sessions() }
+          { this._visitors() }
         </ScrollView>
       </View>
     );
@@ -263,7 +263,7 @@ export default class ExampleStatistics extends Component <void, Props, State> {
               <View style={{flex: 10 - this.state.sessionsSat}}></View>
               <View style={[styles.sessionsBar, {flex: this.state.sessionsSat}]}></View>
             </View>
-            <Text style={styles.sessionsBarText}>Sat</Text>
+            <Text style={styles.sessionsBarText}>SAT</Text>
           </View>
         </View>
       </View>
@@ -324,13 +324,13 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   cellViewTitleView: {
-    paddingTop: 6,
-    paddingBottom: 6,
+    paddingTop: 3,
+    paddingBottom: 3,
     paddingLeft: 12,
     paddingRight: 12,
   },
   cellViewTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
   },
   cellViewContent: {
