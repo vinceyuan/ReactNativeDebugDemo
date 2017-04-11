@@ -104,6 +104,7 @@ export default class ExampleTouch extends Component <void, Props, State> {
           <View style={[styles.square, styles.color2]} />
           <View style={[styles.square, styles.color3]} />
           <View style={[styles.square, styles.color4]} />
+          <View style={[styles.square, styles.color5]} />
         </ScrollView>
         <View key={"Panel"}  style={styles.panel}
           ref={'panel'}
@@ -115,6 +116,7 @@ export default class ExampleTouch extends Component <void, Props, State> {
             <View style={[styles.square, styles.color2]} />
             <View style={[styles.square, styles.color3]} />
             <View style={[styles.square, styles.color4]} />
+            <View style={[styles.square, styles.color5]} />
           </ScrollView>
         </View>
       </View>
@@ -152,6 +154,9 @@ const styles = StyleSheet.create({
   },
   color4: {
     backgroundColor: 'pink',
+  },
+  color5: {
+    backgroundColor: 'orange',
   },
 
   panel: {
