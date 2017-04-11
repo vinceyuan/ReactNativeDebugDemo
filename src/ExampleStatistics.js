@@ -308,10 +308,10 @@ const styles = StyleSheet.create({
     flex: 2,
   },
   titleView: {
-    flex: 8,
+    flex: 10,
   },
   title: {
-    fontSize: 18,
+    fontSize: 20,
     color: 'white',
   },
   rightButton: {
@@ -327,7 +327,7 @@ const styles = StyleSheet.create({
   },
 
   cellView: {
-    marginTop: 10,
+    marginTop: 15,
     marginLeft: 15,
     marginRight: 15,
   },
