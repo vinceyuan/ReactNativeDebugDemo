@@ -2,7 +2,7 @@
 
 Originally, it's the demo for my talk at a React Native [meetup](https://www.meetup.com/React-Singapore/events/237578363/).
 
-####Steps to run
+#### Steps to run
 
 1. Clone the repo and run the server.
 
