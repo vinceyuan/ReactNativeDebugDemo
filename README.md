@@ -1,6 +1,6 @@
 # ReactNativeDebugDemo
 
-Originally, it's the demo project for my talk at a React.js / React Native [meetup](https://www.meetup.com/React-Singapore/events/237578363/). After the talk, I wrote a post about it on [Medium](https://medium.com/@vinceyuan/react-native-debugging-tools-3a24e4e40e4).
+Originally, it's the demo project for my talk at a React.js / React Native [meetup](https://www.meetup.com/React-Singapore/events/237578363/). After the talk, I wrote an [article](https://medium.com/@vinceyuan/react-native-debugging-tools-3a24e4e40e4) about it on Medium.
 
 #### Steps to run
 
