@@ -1,6 +1,6 @@
 # ReactNativeDebugDemo
 
-Originally, it's the demo for my talk at a React Native [meetup](https://www.meetup.com/React-Singapore/events/237578363/).
+Originally, it's the demo project for my talk at a React.js / React Native [meetup](https://www.meetup.com/React-Singapore/events/237578363/). After the talk, I wrote a post about it on [Medium](https://medium.com/@vinceyuan/react-native-debugging-tools-3a24e4e40e4).
 
 #### Steps to run
 
@@ -14,3 +14,13 @@ react-native start
 ```
 
 2. In another terminal window, input `react-native run-ios` or `react-native run-ios` to run the app.
+
+#### Screenshots
+
+![Screenshot](https://github.com/vinceyuan/ReactNativeDebugDemo/raw/master/MainView.png)
+
+![Screenshot](https://github.com/vinceyuan/ReactNativeDebugDemo/raw/master/Example1.png)
+
+![Screenshot](https://github.com/vinceyuan/ReactNativeDebugDemo/raw/master/Example2.png)
+
+![Screenshot](https://github.com/vinceyuan/ReactNativeDebugDemo/raw/master/Example3.png)
