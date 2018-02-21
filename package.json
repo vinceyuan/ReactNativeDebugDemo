@@ -1,29 +1,23 @@
 {
-	"name": "ReactNativeDebugDemo",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"eslint": "./node_modules/.bin/eslint 'src/**/*.js'",
+  "name": "ReactNativeDebugDemo",
+  "version": "0.1.1",
+  "private": false,
+  "scripts": {
+    "eslint": "./node_modules/.bin/eslint 'src/**/*.js'",
     "flow": "./node_modules/.bin/flow check",
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
-	},
-	"dependencies": {
-		"react": "~15.4.1",
-		"react-native": "0.42.3"
-	},
-	"devDependencies": {
-		"babel-jest": "19.0.0",
-		"babel-eslint": "^6.1.2",
-		"babel-preset-react-native": "1.9.1",
-    "eslint": "^3.3.1",
-    "eslint-plugin-react": "^6.1.2",
-    "eslint-plugin-react-native": "^2.0.0",
-		"jest": "19.0.2",
-		"react-test-renderer": "~15.4.1",
-		"flow-bin": "^0.38.0"
-	},
-	"jest": {
-		"preset": "react-native"
-	}
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "react": "16.0.0",
+    "react-native": "0.50.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.2",
+    "babel-preset-react-native": "1.9.1",
+    "eslint": "^4.11.0",
+    "eslint-plugin-react": "^7.5.1",
+    "eslint-plugin-react-native": "^3.2.0",
+    "react-test-renderer": "~15.4.1",
+    "flow-bin": "^0.56.0"
+  }
 }
