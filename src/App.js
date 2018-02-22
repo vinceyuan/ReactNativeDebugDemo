@@ -1,18 +1,11 @@
 // @flow
 
 import React, { Component } from 'react';
-import {
-  Navigator,
-  Platform,
-  StyleSheet,
-  UIManager,
-  View
-} from 'react-native';
+import { Platform, StyleSheet, UIManager, View } from 'react-native';
 import NavigationBarStyles from './NavigationBarStyles';
+import { Navigator } from 'react-native-deprecated-custom-components';
 
-import type {
-  NavigationState,
-} from 'NavigationTypeDefinition';
+import type { NavigationState } from 'NavigationTypeDefinition';
 
 import Home from './Home';
 import type Route from './Route';
@@ -24,11 +17,11 @@ const TITLE_BAR_HEIGHT = Platform.OS === 'ios' ? 80 : 56; // On iOS, it includes
  */
 UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
 
-export default class App extends Component {
+export default class App extends Component<void, void> {
   render() {
     return (
       <Navigator
-        initialRoute={{ title: 'Debugging Demo', component: Home}}
+        initialRoute={{ title: 'Debugging Demo', component: Home }}
         renderScene={this._renderScene.bind(this)}
         navigationBar={
           <Navigator.NavigationBar
@@ -44,10 +37,10 @@ export default class App extends Component {
   _navigatorItem(functionName, route, navigator, index, navState) {
     let classDefinition = route.component;
 
-    if(classDefinition && classDefinition[functionName]) {
-        return classDefinition[functionName](route, navigator, index, navState);
+    if (classDefinition && classDefinition[functionName]) {
+      return classDefinition[functionName](route, navigator, index, navState);
     } else {
-        return null;
+      return null;
     }
   }
 
@@ -56,9 +49,7 @@ export default class App extends Component {
 
     navigator.parent = this;
 
-    return (
-      <Component navigator={navigator} route={route} {...route.props}/>
-    );
+    return <Component navigator={navigator} route={route} {...route.props} />;
   }
 
   _routeMapper() {
@@ -79,17 +70,15 @@ export default class App extends Component {
       },
       Title: (route: Route, navigator: typeof Navigator, index: number, navState: NavigationState) => {
         return (
-          <View style={[styles.itemLayout]}>
-            {this._navigatorItem('title', route, navigator, index, navState)}
-          </View>
+          <View style={[styles.itemLayout]}>{this._navigatorItem('title', route, navigator, index, navState)}</View>
         );
-      }
-    }
+      },
+    };
   }
 }
 
 const styles = StyleSheet.create({
-  navigatorBar:{
+  navigatorBar: {
     height: TITLE_BAR_HEIGHT,
     backgroundColor: 'white',
     elevation: 3,

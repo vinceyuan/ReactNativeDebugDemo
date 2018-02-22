@@ -1,14 +1,8 @@
 // @flow
 
 import React, { Component } from 'react';
-import {
-  Modal,
-  Navigator,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native';
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Navigator } from 'react-native-deprecated-custom-components';
 
 import type Route from './Route';
 
@@ -19,55 +13,50 @@ import ExampleStatistics from './ExampleStatistics';
 type Props = {
   navigator: typeof Navigator,
   route: Route,
-}
+};
 
 type State = {
   modalVisible: boolean,
-}
+};
 
-export default class Home extends Component <void, Props, State> {
+export default class Home extends Component<Props, State> {
   props: Props;
 
   state: State = {
     modalVisible: false,
   };
 
-  static title(route: Route){
-    return (
-      <Text style={styles.title}>{route.title}</Text>
-    );
+  static title(route: Route) {
+    return <Text style={styles.title}>{route.title}</Text>;
   }
 
   render() {
     return (
       <View style={styles.container}>
         <TouchableOpacity
-          onPress={() => this.props.navigator.push({ title: 'Calculator', component: ExampleCalculator})}
+          onPress={() =>
+            this.props.navigator.push({ key: 'Calculator', title: 'Calculator', component: ExampleCalculator })
+          }
           style={styles.button}
         >
           <Text style={styles.buttonText}>Example 1</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => this.props.navigator.push({ title: 'Touch', component: ExampleTouch})}
+          onPress={() => this.props.navigator.push({ key: 'Touch', title: 'Touch', component: ExampleTouch })}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Example 2</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => this.setState({modalVisible: true})}
-          style={styles.button}
-        >
+        <TouchableOpacity onPress={() => this.setState({ modalVisible: true })} style={styles.button}>
           <Text style={styles.buttonText}>Example 3</Text>
         </TouchableOpacity>
         <Modal
-          animationType={"slide"}
+          animationType={'slide'}
           transparent={false}
           visible={this.state.modalVisible}
-          onRequestClose={() => this.setState({modalVisible: false})}
+          onRequestClose={() => this.setState({ modalVisible: false })}
         >
-          <ExampleStatistics
-            onPressExit={() => this.setState({modalVisible: false})}
-          />
+          <ExampleStatistics onPressExit={() => this.setState({ modalVisible: false })} />
         </Modal>
       </View>
     );
@@ -95,5 +84,5 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 40,
-  }
+  },
 });

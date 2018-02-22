@@ -1,52 +1,43 @@
 // @flow
 
 import React, { Component } from 'react';
-import {
-  Navigator,
-  PanResponder,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native';
-
+import { PanResponder, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Navigator } from 'react-native-deprecated-custom-components';
 import type Route from './Route';
 
 const DEFAULT_HEIGHT = 300;
 
-
 type Props = {
   navigator: typeof Navigator,
   route: Route,
-}
+};
 
-type State = {
-}
+type State = {};
 
-export default class ExampleTouch extends Component <void, Props, State> {
+export default class ExampleTouch extends Component<Props, State> {
   props: Props;
 
-  state: State = {
-  };
+  state: State = {};
 
   _height = DEFAULT_HEIGHT;
-  _panResponder = {}
+  _panResponder = {};
+  _panelRef;
 
-  static leftButton(route: Route, navigator: typeof Navigator){
+  static leftButton(route: Route, navigator: typeof Navigator) {
     return (
-      <TouchableOpacity style={styles.leftButton} onPress={() => {
-        navigator.pop();
-      }}>
+      <TouchableOpacity
+        style={styles.leftButton}
+        onPress={() => {
+          navigator.pop();
+        }}
+      >
         <Text>Back</Text>
       </TouchableOpacity>
-    )
+    );
   }
 
-  static title(route: Route){
-    return (
-      <Text style={styles.title}>{route.title}</Text>
-    );
+  static title(route: Route) {
+    return <Text style={styles.title}>{route.title}</Text>;
   }
 
   componentWillMount() {
@@ -76,7 +67,7 @@ export default class ExampleTouch extends Component <void, Props, State> {
         console.log('onPanResponderRelease', gestureState.dx, gestureState.dy);
         // The user has released all touches while this view is the
         // responder. This typically means a gesture has succeeded
-        const {dy} = gestureState;
+        const { dy } = gestureState;
         this._height -= dy;
       },
       onPanResponderTerminate: () => {
@@ -91,9 +82,10 @@ export default class ExampleTouch extends Component <void, Props, State> {
   }
 
   _updatePanelViewNativeStyle(dy: number) {
-    this.refs.panel.setNativeProps({
-      style: {height: this._height - dy},
-    });
+    this._panelRef &&
+      this._panelRef.setNativeProps({
+        style: { height: this._height - dy },
+      });
   }
 
   render() {
@@ -106,8 +98,10 @@ export default class ExampleTouch extends Component <void, Props, State> {
           <View style={[styles.square, styles.color4]} />
           <View style={[styles.square, styles.color5]} />
         </ScrollView>
-        <View key={"Panel"}  style={styles.panel}
-          ref={'panel'}
+        <View
+          key={'Panel'}
+          style={styles.panel}
+          ref={ref => (this._panelRef = ref)}
           {...this._panResponder.panHandlers}
         >
           <View style={styles.bar} />

@@ -1,8 +1,5 @@
 // @flow
-import {
-  Platform,
-  Dimensions,
-} from 'react-native';
+import { Platform, Dimensions } from 'react-native';
 
 import buildStyleInterpolator from 'buildStyleInterpolator';
 
@@ -69,7 +66,6 @@ let Stages = {
     RightButton: merge(BASE_STYLES.RightButton, { opacity: 0 }),
   },
 };
-
 
 let opacityRatio = 100;
 
@@ -138,7 +134,6 @@ let Interpolators = {
   // Both stages (animating *past* the center stage)
   RightToLeft: buildSceneInterpolators(Stages.Right, Stages.Left),
 };
-
 
 export default {
   General: {

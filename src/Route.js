@@ -1,8 +1,9 @@
 import Home from './Home';
-import SecondView from './SecondView';
+import ExampleCalculator from './ExampleCalculator';
+import ExampleTouch from './ExampleTouch';
 
 export type Route = {
   key: string,
-  component: Home | SecondView,
+  component: Home | ExampleCalculator | ExampleTouch,
   title: string,
-}
+};

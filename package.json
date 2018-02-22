@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "react": "16.0.0",
-    "react-native": "0.50.4"
+    "react-native": "0.50.4",
+    "react-native-deprecated-custom-components": "github:facebookarchive/react-native-custom-components"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.2",
