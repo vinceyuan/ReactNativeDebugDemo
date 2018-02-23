@@ -1,15 +1,9 @@
 // @flow
 
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { Navigator } from 'react-native-deprecated-custom-components';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-import type Route from './Route';
-
-type Props = {
-  navigator: typeof Navigator,
-  route: Route,
-};
+type Props = {};
 
 type State = {
   value1: number,
@@ -24,22 +18,9 @@ export default class ExampleCalculator extends Component<Props, State> {
     value2: 0,
   };
 
-  static leftButton(route: Route, navigator: typeof Navigator) {
-    return (
-      <TouchableOpacity
-        style={styles.leftButton}
-        onPress={() => {
-          navigator.pop();
-        }}
-      >
-        <Text>Back</Text>
-      </TouchableOpacity>
-    );
-  }
-
-  static title(route: Route) {
-    return <Text style={styles.title}>{route.title}</Text>;
-  }
+  static navigationOptions = {
+    title: 'Calculator',
+  };
 
   _calculate(value1: number, value2: number): number {
     return value1 + value2;
@@ -96,12 +77,6 @@ export default class ExampleCalculator extends Component<Props, State> {
 }
 
 const styles = StyleSheet.create({
-  leftButton: {
-    padding: 10,
-  },
-  title: {
-    fontSize: 28,
-  },
   container: {
     flex: 1,
     alignItems: 'center',

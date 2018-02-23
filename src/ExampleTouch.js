@@ -1,16 +1,11 @@
 // @flow
 
 import React, { Component } from 'react';
-import { PanResponder, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Navigator } from 'react-native-deprecated-custom-components';
-import type Route from './Route';
+import { PanResponder, ScrollView, StyleSheet, View } from 'react-native';
 
 const DEFAULT_HEIGHT = 300;
 
-type Props = {
-  navigator: typeof Navigator,
-  route: Route,
-};
+type Props = {};
 
 type State = {};
 
@@ -23,22 +18,9 @@ export default class ExampleTouch extends Component<Props, State> {
   _panResponder = {};
   _panelRef;
 
-  static leftButton(route: Route, navigator: typeof Navigator) {
-    return (
-      <TouchableOpacity
-        style={styles.leftButton}
-        onPress={() => {
-          navigator.pop();
-        }}
-      >
-        <Text>Back</Text>
-      </TouchableOpacity>
-    );
-  }
-
-  static title(route: Route) {
-    return <Text style={styles.title}>{route.title}</Text>;
-  }
+  static navigationOptions = {
+    title: 'Touch',
+  };
 
   componentWillMount() {
     console.log('componentWillMount');
@@ -119,12 +101,6 @@ export default class ExampleTouch extends Component<Props, State> {
 }
 
 const styles = StyleSheet.create({
-  leftButton: {
-    padding: 10,
-  },
-  title: {
-    fontSize: 28,
-  },
   container: {
     flex: 1,
     alignItems: 'center',

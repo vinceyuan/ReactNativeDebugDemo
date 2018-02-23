@@ -2,17 +2,12 @@
 
 import React, { Component } from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Navigator } from 'react-native-deprecated-custom-components';
+import { StackNavigator } from 'react-navigation';
 
-import type Route from './Route';
-
-import ExampleCalculator from './ExampleCalculator';
-import ExampleTouch from './ExampleTouch';
 import ExampleStatistics from './ExampleStatistics';
 
 type Props = {
-  navigator: typeof Navigator,
-  route: Route,
+  navigation: typeof StackNavigator,
 };
 
 type State = {
@@ -25,26 +20,17 @@ export default class Home extends Component<Props, State> {
   state: State = {
     modalVisible: false,
   };
-
-  static title(route: Route) {
-    return <Text style={styles.title}>{route.title}</Text>;
-  }
+  static navigationOptions = {
+    title: 'Home',
+  };
 
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity
-          onPress={() =>
-            this.props.navigator.push({ key: 'Calculator', title: 'Calculator', component: ExampleCalculator })
-          }
-          style={styles.button}
-        >
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('ExampleCalculator')} style={styles.button}>
           <Text style={styles.buttonText}>Example 1</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => this.props.navigator.push({ key: 'Touch', title: 'Touch', component: ExampleTouch })}
-          style={styles.button}
-        >
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('ExampleTouch')} style={styles.button}>
           <Text style={styles.buttonText}>Example 2</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => this.setState({ modalVisible: true })} style={styles.button}>
@@ -64,9 +50,6 @@ export default class Home extends Component<Props, State> {
 }
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 28,
-  },
   container: {
     flex: 1,
     alignItems: 'center',
