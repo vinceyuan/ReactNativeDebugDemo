@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 import { UIManager } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
+// Hack to support horizontal navigation animation on Android.
+import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
+
 import Home from './Home';
 import ExampleCalculator from './ExampleCalculator';
 import ExampleTouch from './ExampleTouch';
@@ -27,6 +30,11 @@ const RootStack = StackNavigator(
   },
   {
     initialRouteName: 'Home',
+    transitionConfig: () => ({
+      screenInterpolator: sceneProps => {
+        return CardStackStyleInterpolator.forHorizontal(sceneProps);
+      },
+    }),
   }
 );
 
